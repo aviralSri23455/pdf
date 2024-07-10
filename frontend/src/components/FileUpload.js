@@ -24,7 +24,7 @@ const FileUpload = () => {
 
   const onViewResume = () => {
     if (uploadedFile) {
-      window.open(`http://localhost:5000/${uploadedFile.filePath}`, '_blank');
+      window.open(`http://pdf-sk0s.onrender.com/${uploadedFile.filePath}`, '_blank');
     } else {
       alert('No file uploaded yet.');
     }
