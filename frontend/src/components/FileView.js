@@ -20,7 +20,7 @@ const FileView = () => {
     <ul>
       {files.map(file => (
         <li key={file._id}>
-          <a href={`http://localhost:5000/${file.filePath}`} target="_blank" rel="noopener noreferrer">
+          <a href={`http://pdf-sk0s.onrender.com/${file.filePath}`} target="_blank" rel="noopener noreferrer">
             {file.fileName}
           </a>
         </li>
