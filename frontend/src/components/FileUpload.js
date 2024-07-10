@@ -13,7 +13,7 @@ const FileUpload = () => {
     const formData = new FormData();
     formData.append('file', file);
     try {
-      const res = await axios.post('http://localhost:5000/api/files/upload', formData);
+      const res = await axios.post('https://pdf-sk0s.onrender.com', formData);
       setUploadedFile(res.data);
       alert('File uploaded successfully.');
     } catch (error) {
