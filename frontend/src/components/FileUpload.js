@@ -10,21 +10,31 @@ const FileUpload = () => {
   };
 
   const onFileUpload = async () => {
+    if (!file) {
+      alert('Please select a file first.');
+      return;
+    }
+
     const formData = new FormData();
     formData.append('file', file);
+
     try {
-      const res = await axios.post('https://pdf-sk0s.onrender.com', formData);
+      const res = await axios.post('https://pdf-sk0s.onrender.com/api/files/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       setUploadedFile(res.data);
       alert('File uploaded successfully.');
     } catch (error) {
-      console.error(error);
-      alert('Error uploading file.');
+      console.error('Upload error:', error);
+      alert('Error uploading file: ' + (error.response?.data || error.message));
     }
   };
 
   const onViewResume = () => {
     if (uploadedFile) {
-      window.open(`http://pdf-sk0s.onrender.com/${uploadedFile.filePath}`, '_blank');
+      window.open(`https://pdf-sk0s.onrender.com/uploads/${uploadedFile.filePath}`, '_blank');
     } else {
       alert('No file uploaded yet.');
     }
