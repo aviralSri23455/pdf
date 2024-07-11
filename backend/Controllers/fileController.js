@@ -1,24 +1,28 @@
-const File = require('../model/fileModel');
-const path = require('path');
+const File = require('../model/fileModel'); // Adjust the path as needed
 
 exports.uploadFile = async (req, res) => {
   try {
+    if (!req.file) {
+      return res.status(400).send('No file uploaded.');
+    }
     const newFile = new File({
       fileName: req.file.originalname,
-      filePath: req.file.path
+      filePath: req.file.filename
     });
     await newFile.save();
-    res.status(201).json(newFile);
+    res.status(200).json(newFile);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('File upload error:', error);
+    res.status(500).send('Error uploading file');
   }
 };
 
 exports.getFiles = async (req, res) => {
   try {
     const files = await File.find();
-    res.status(200).json(files);
+    res.json(files);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Error fetching files:', error);
+    res.status(500).send('Error fetching files');
   }
 };
