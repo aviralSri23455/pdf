@@ -7,7 +7,7 @@ const FileView = () => {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const res = await axios.get('https://pdf-sk0s.onrender.com/api/files');
+        const res = await axios.get('https://pdf-sk0s.onrender.com/api/files/view');
         setFiles(res.data);
       } catch (error) {
         console.error('Fetch error:', error);
